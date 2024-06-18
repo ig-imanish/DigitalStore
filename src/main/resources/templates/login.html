@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Digital Store</title>
+</head>
+<body>
+    <h1>Welcome to Digital Store</h1>
+    <p>This is the login page.</p>
+    <p>Buyer</p>
+    <p><a th:href="@{/buyer/login}">Buyer Login</a></p>
+    <p><a th:href="@{/buyer/register}"> Buyer Register</a></p>
+
+    <p>Seller</p>
+    <p><a th:href="@{/seller/login}">Seller Login</a></p>
+    <p><a th:href="@{/seller/register}"> Seller Register</a></p>
+</body>
+</html>

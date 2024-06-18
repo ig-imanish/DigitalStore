@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Profile</title>
+  </head>
+  <body>
+    <h1>User Profile</h1>
+    <div th:if="${buyer != null}">
+      <p>Buyer ID: <span th:text="${buyer.buyerId}"></span></p>
+      <p>Name: <span th:text="${buyer.buyerName}"></span></p>
+      <p>Email: <span th:text="${buyer.buyerEmail}"></span></p>
+      <h2>Vouches:</h2>
+      <ul
+        th:if="${buyer.buyerVouches != null and buyer.buyerVouches.size() > 0}"
+      >
+        <li th:each="vouch : ${buyer.buyerVouches}">
+          <p>Vouch ID: <span th:text="${vouch.id}"></span></p>
+          <p>vouchMessage: <span th:text="${vouch.vouchMessage}"></span></p>
+          <p>vouchStatus: <span th:text="${vouch.vouchStatus}"></span></p>
+          <p>sellerId: <span th:text="${vouch.sellerId}"></span></p>
+          <p>buyerId: <span th:text="${vouch.buyerId}"></span></p>
+        </li>
+      </ul>
+      <p
+        th:if="${buyer.buyerVouches == null or buyer.buyerVouches.size() == 0}"
+      >
+        You have no vouches yet.
+      </p>
+    </div>
+    <p th:unless="${buyer != null}">Buyer not found.</p>
+  </body>
+</html>

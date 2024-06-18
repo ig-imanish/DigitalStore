@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Seller Dashboard</title>
+</head>
+<body>
+    <h1>Seller Dashboard</h1>
+    <div th:if="${seller != null}">
+        <p>Seller ID: <span th:text="${seller.sellerId}"></span></p>
+        <p>Name: <span th:text="${seller.sellerName}"></span></p>
+        <p>Email: <span th:text="${seller.sellerEmail}"></span></p>
+        <!-- Add more details as needed -->
+    </div>
+</body>
+</html>

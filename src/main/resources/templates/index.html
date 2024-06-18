@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Welcome to Digital Store</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        width: 80%;
+        margin: 0 auto;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .user-info,
+      .login-section {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+      }
+      .login-section button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .login-section button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <!-- User info section -->
+        <div class="user-info" th:if="${user != null}">
+            <h2>User Information</h2>
+            <p th:if="${#strings.equals(typeOfUser, 'buyer')}">
+                Buyer ID: <span th:text="${user.buyerId}">Buyer ID</span><br />
+                Name: <span th:text="${user.buyerName}">Buyer Name</span><br />
+                Email: <span th:text="${user.buyerEmail}">Buyer Email</span>
+            </p>
+            <p th:if="${#strings.equals(typeOfUser, 'seller')}">
+                Seller ID: <span th:text="${user.sellerId}">Seller ID</span><br />
+                Name: <span th:text="${user.sellerName}">Seller Name</span><br />
+                Email: <span th:text="${user.sellerEmail}">Seller Email</span>
+            </p>
+            <button>
+                <a th:href="@{'/profile/' + ${user.buyerId}}" th:if="${#strings.equals(typeOfUser, 'buyer')}">Profile</a>
+                <a th:href="@{'/dashboard/' + ${user.sellerId}}" th:if="${#strings.equals(typeOfUser, 'seller')}">Dashboard</a>
+            </button>
+        </div>
+
+        <!-- Login section if user is not logged in -->
+        <div class="login-section" th:if="${user == null}">
+            <h2>You are not logged in</h2>
+            <button>
+                <a th:href="@{/login}">Login</a>
+            </button>
+        </div>
+
+        <h2>Product List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Product Description</th>
+                    <th>Product Price</th>
+                    <th>Seller ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate over products -->
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.productId}">Product ID</td>
+                    <td th:text="${product.productName}">Product Name</td>
+                    <td th:text="${product.productDescription}">Product Description</td>
+                    <td th:text="${product.productPrice}">Product Price</td>
+                    <td th:text="${product.sellerId}">Seller ID</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

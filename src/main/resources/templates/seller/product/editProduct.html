@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Product</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Product</h1>
+        <form th:action="@{/products/edit}" th:object="${product}" method="post" class="needs-validation" novalidate>
+            <input type="hidden" th:field="*{productId}">
+            <input type="hidden" th:field="*{sellerId}">
+            
+            <div class="form-group">
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" class="form-control" th:field="*{productName}" required>
+                <div class="invalid-feedback">Please enter a product name.</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="productDescription">Product Description:</label>
+                <input type="text" id="productDescription" class="form-control" th:field="*{productDescription}" required>
+                <div class="invalid-feedback">Please enter a product description.</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="productPrice">Product Price:</label>
+                <input type="text" id="productPrice" class="form-control" th:field="*{productPrice}" required>
+                <div class="invalid-feedback">Please enter a product price.</div>
+            </div>
+            
+            <div class="form-group">
+          <label for="productStatus">Product Status:</label>
+          <select
+            id="productStatus"
+            class="form-control"
+            th:field="*{productStatus}"
+            required
+          >
+            <option
+              value="UNSOLD"
+              th:selected="${productStatus == 'UNSOLD'}"
+            >
+              Unsold
+            </option>
+            <option
+              value="SOLD"
+              th:selected="${productStatus == 'SOLD'}"
+            >
+              Sold
+            </option>
+          </select>
+          <div class="invalid-feedback">Please select a product status.</div>
+        </div>
+            
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (not required for styling, but for form validation if needed) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

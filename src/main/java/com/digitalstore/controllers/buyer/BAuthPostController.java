@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.digitalstore.helpers.CodeGenerator;
 import com.digitalstore.model.buyers.Buyer;
 import com.digitalstore.service.BuyerService;
@@ -17,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/buyer")
-public class AuthPostController {
+public class BAuthPostController {
     @Autowired
     private BuyerService buyerService;
 

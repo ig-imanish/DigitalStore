@@ -1,11 +1,11 @@
 package com.digitalstore.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.digitalstore.dao.SellerRepo;
 import com.digitalstore.model.sellers.Seller;
 
@@ -33,5 +33,8 @@ public class SellerService {
         Set<String> existingCodes = new HashSet<>();
         sellerRepo.findAll().forEach(seller -> existingCodes.add(seller.getSellerId()));
         return existingCodes;
+    }
+    public List<Seller> findByBuyerEmail(String sellerEmail) {
+        return sellerRepo.findBySellerEmail(sellerEmail);
     }
 }

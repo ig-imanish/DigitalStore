@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Buyer Login</title>
+    <title>Create Product</title>
     <!-- Bootstrap CSS -->
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -39,48 +39,56 @@
   </head>
   <body>
     <div class="container">
-      <h1>Buyer Login</h1>
+      <h1>Create Product</h1>
       <form
-        action="#"
-        th:action="@{/buyer/login}"
+        th:action="@{/products/create}"
+        th:object="${product}"
         method="post"
-        th:object="${buyer}"
         class="needs-validation"
         novalidate
       >
+        <input type="hidden" th:value="${sellerId}" name="sellerId" />
+
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="productName">Product Name:</label>
           <input
-            type="email"
-            id="email"
+            type="text"
+            id="productName"
             class="form-control"
-            th:field="*{buyerEmail}"
+            th:field="*{productName}"
+            required
+          />
+          <div class="invalid-feedback">Please enter a product name.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="productDescription">Product Description:</label>
+          <input
+            type="text"
+            id="productDescription"
+            class="form-control"
+            th:field="*{productDescription}"
             required
           />
           <div class="invalid-feedback">
-            Please enter a valid email address.
+            Please enter a product description.
           </div>
         </div>
 
         <div class="form-group">
-          <label for="password">Password:</label>
+          <label for="productPrice">Product Price:</label>
           <input
-            type="password"
-            id="password"
+            type="text"
+            id="productPrice"
             class="form-control"
-            th:field="*{buyerPassword}"
+            th:field="*{productPrice}"
             required
           />
-          <div class="invalid-feedback">Please enter your password.</div>
+          <div class="invalid-feedback">Please enter a product price.</div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Create</button>
       </form>
-
-      <p th:if="${error}" style="color: red">Invalid username or password.</p>
-      <p>
-        Don't have an account? <a th:href="@{/buyer/register}">Register here</a>
-      </p>
     </div>
 
     <!-- Bootstrap JS and dependencies (not required for styling, but for form validation if needed) -->

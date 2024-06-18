@@ -1,18 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Welcome to Digital Store</title>
-</head>
-<body>
-    <h1>Welcome to Digital Store</h1>
-    <p>This is the login page.</p>
-    <p>Buyer</p>
-    <p><a th:href="@{/buyer/login}">Buyer Login</a></p>
-    <p><a th:href="@{/buyer/register}"> Buyer Register</a></p>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-4">Welcome to Digital Store</h1>
+      <p>This is the login page.</p>
 
-    <p>Seller</p>
-    <p><a th:href="@{/seller/login}">Seller Login</a></p>
-    <p><a th:href="@{/seller/register}"> Seller Register</a></p>
-</body>
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Buyer</h4>
+          <p>
+            <a class="btn btn-primary btn-lg" th:href="@{/buyer/login}"
+              >Buyer Login</a
+            >
+          </p>
+          <p>
+            <a class="btn btn-secondary btn-lg" th:href="@{/buyer/register}"
+              >Buyer Register</a
+            >
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h4>Seller</h4>
+          <p>
+            <a class="btn btn-primary btn-lg" th:href="@{/seller/login}"
+              >Seller Login</a
+            >
+          </p>
+          <p>
+            <a class="btn btn-secondary btn-lg" th:href="@{/seller/register}"
+              >Seller Register</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (not required for styling, but for interactive components if needed) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
 </html>

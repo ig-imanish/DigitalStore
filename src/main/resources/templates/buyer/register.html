@@ -2,23 +2,68 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Buyer Register</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Register</h1>
-    <form action="#" th:action="@{/buyer/register}" method="post" th:object="${buyer}">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" th:field="*{buyerName}"><br>
+    <div class="container">
+        <h1>Buyer Register</h1>
+        <form action="#" th:action="@{/buyer/register}" method="post" th:object="${buyer}" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" class="form-control" th:field="*{buyerName}" required>
+                <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" class="form-control" th:field="*{buyerEmail}" required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" class="form-control" th:field="*{buyerPassword}" required>
+                <div class="invalid-feedback">Please enter a password.</div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
         
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" th:field="*{buyerEmail}"><br>
-        
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" th:field="*{buyerPassword}"><br>
-        
-        <button type="submit">Register</button>
-    </form>
-    <p style="color: red;" th:text="${error}">Error message here</p>
-    <p>Already have an account? <a th:href="@{/buyer/login}">Login here</a></p>
+        <p style="color: red;" th:text="${error}">Error message here</p>
+        <p>Already have an account? <a th:href="@{/buyer/login}">Login here</a></p>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (not required for styling, but for form validation if needed) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

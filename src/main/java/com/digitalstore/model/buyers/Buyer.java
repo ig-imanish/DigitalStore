@@ -15,37 +15,47 @@ public class Buyer {
     private String buyerEmail;
     private String buyerPassword;
     private List<Vouch> buyerVouches;
-
+    
     public String getBuyerId() {
         return buyerId;
     }
+
     public void setBuyerId(String buyerId) {
         this.buyerId = buyerId;
     }
+
     public String getBuyerName() {
         return buyerName;
     }
+
     public void setBuyerName(String buyerName) {
         this.buyerName = buyerName;
     }
+
     public String getBuyerEmail() {
         return buyerEmail;
     }
+
     public void setBuyerEmail(String buyerEmail) {
         this.buyerEmail = buyerEmail;
     }
+
     public String getBuyerPassword() {
         return buyerPassword;
     }
+
     public void setBuyerPassword(String buyerPassword) {
         this.buyerPassword = buyerPassword;
     }
+
     public List<Vouch> getBuyerVouches() {
         return buyerVouches;
     }
+
     public void setBuyerVouches(List<Vouch> buyerVouches) {
         this.buyerVouches = buyerVouches;
     }
+
     @Override
     public String toString() {
         return "Buyer [buyerId=" + buyerId + ", buyerName=" + buyerName + ", buyerEmail=" + buyerEmail

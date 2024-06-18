@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Buyer Login</title>
+    <title>Seller Register</title>
     <!-- Bootstrap CSS -->
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -35,51 +35,63 @@
       .form-group {
         margin-bottom: 20px;
       }
+      .error-message {
+        color: red;
+        font-style: italic;
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Buyer Login</h1>
+      <h1>Seller Register</h1>
       <form
         action="#"
-        th:action="@{/buyer/login}"
+        th:action="@{/seller/register}"
         method="post"
-        th:object="${buyer}"
+        th:object="${seller}"
         class="needs-validation"
         novalidate
       >
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            th:field="*{sellerName}"
+            required
+          />
+          <div class="invalid-feedback">Please enter your name.</div>
+        </div>
         <div class="form-group">
           <label for="email">Email:</label>
           <input
             type="email"
             id="email"
             class="form-control"
-            th:field="*{buyerEmail}"
+            th:field="*{sellerEmail}"
             required
           />
           <div class="invalid-feedback">
             Please enter a valid email address.
           </div>
         </div>
-
         <div class="form-group">
           <label for="password">Password:</label>
           <input
             type="password"
             id="password"
             class="form-control"
-            th:field="*{buyerPassword}"
+            th:field="*{sellerPassword}"
             required
           />
-          <div class="invalid-feedback">Please enter your password.</div>
+          <div class="invalid-feedback">Please enter a password.</div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Register</button>
       </form>
-
-      <p th:if="${error}" style="color: red">Invalid username or password.</p>
+      <p class="error-message" th:text="${error}">Error message here</p>
       <p>
-        Don't have an account? <a th:href="@{/buyer/register}">Register here</a>
+        Already have an account? <a th:href="@{/seller/login}">Login here</a>
       </p>
     </div>
 

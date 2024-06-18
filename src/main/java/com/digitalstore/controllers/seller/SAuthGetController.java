@@ -1,14 +1,14 @@
-package com.digitalstore.controllers.buyer;
+package com.digitalstore.controllers.seller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.digitalstore.model.buyers.Buyer;
+import com.digitalstore.model.sellers.Seller;
 
 @Controller
-@RequestMapping("/buyer")
-public class AuthGetController {
+@RequestMapping("/seller")
+public class SAuthGetController {
 
     @GetMapping
     public String defaultBuyerPage(){
@@ -17,13 +17,13 @@ public class AuthGetController {
 
     @GetMapping("/register")
     public String buyerRegisterPage(Model model){
-        model.addAttribute("buyer", new Buyer());
-        return "buyer/register";
+        model.addAttribute("seller", new Seller());
+        return "seller/register";
     }
 
     @GetMapping("/login")
     public String buyerLoginPage(Model model){
-         model.addAttribute("buyer", new Buyer());
-        return "buyer/login";
+         model.addAttribute("seller", new Seller());
+        return "seller/login";
     }
 }

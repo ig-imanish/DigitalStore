@@ -3,31 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <title>User Profile</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding: 20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>User Profile</h1>
-    <div th:if="${buyer != null}">
-      <p>Buyer ID: <span th:text="${buyer.buyerId}"></span></p>
-      <p>Name: <span th:text="${buyer.buyerName}"></span></p>
-      <p>Email: <span th:text="${buyer.buyerEmail}"></span></p>
-      <h2>Vouches:</h2>
-      <ul
-        th:if="${buyer.buyerVouches != null and buyer.buyerVouches.size() > 0}"
-      >
-        <li th:each="vouch : ${buyer.buyerVouches}">
-          <p>Vouch ID: <span th:text="${vouch.id}"></span></p>
-          <p>vouchMessage: <span th:text="${vouch.vouchMessage}"></span></p>
-          <p>vouchStatus: <span th:text="${vouch.vouchStatus}"></span></p>
-          <p>sellerId: <span th:text="${vouch.sellerId}"></span></p>
-          <p>buyerId: <span th:text="${vouch.buyerId}"></span></p>
-        </li>
-      </ul>
-      <p
-        th:if="${buyer.buyerVouches == null or buyer.buyerVouches.size() == 0}"
-      >
-        You have no vouches yet.
+    <div class="container">
+      <h1 class="mt-4">User Profile</h1>
+      <div th:if="${buyer != null}">
+        <div class="card mt-4">
+          <div class="card-body">
+            <p class="card-text">
+              Buyer ID: <span th:text="${buyer.buyerId}"></span>
+            </p>
+            <p class="card-text">
+              Name: <span th:text="${buyer.buyerName}"></span>
+            </p>
+            <p class="card-text">
+              Email: <span th:text="${buyer.buyerEmail}"></span>
+            </p>
+            <h2 class="mt-4">Vouches:</h2>
+            <ul
+              class="list-group list-group-flush"
+              th:if="${buyer.buyerVouches != null and buyer.buyerVouches.size() > 0}"
+            >
+              <li
+                th:each="vouch : ${buyer.buyerVouches}"
+                class="list-group-item"
+              >
+                <p class="card-text">
+                  Vouch ID: <span th:text="${vouch.id}"></span>
+                </p>
+                <p class="card-text">
+                  vouchMessage: <span th:text="${vouch.vouchMessage}"></span>
+                </p>
+                <p class="card-text">
+                  vouchStatus: <span th:text="${vouch.vouchStatus}"></span>
+                </p>
+                <p class="card-text">
+                  sellerId: <span th:text="${vouch.sellerId}"></span>
+                </p>
+                <p class="card-text">
+                  buyerId: <span th:text="${vouch.buyerId}"></span>
+                </p>
+              </li>
+            </ul>
+            <p
+              th:if="${buyer.buyerVouches == null or buyer.buyerVouches.size() == 0}"
+              class="card-text"
+            >
+              You have no vouches yet.
+            </p>
+          </div>
+        </div>
+      </div>
+      <p th:unless="${buyer != null}" class="mt-4 text-danger">
+        Buyer not found.
       </p>
     </div>
-    <p th:unless="${buyer != null}">Buyer not found.</p>
+
+    <!-- Bootstrap JS and dependencies (not required for styling, but for interactive components if needed) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>

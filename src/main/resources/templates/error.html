@@ -1,0 +1,35 @@
+<!-- error.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Error</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin-top: 150px;
+        padding: 20px;
+      }
+      .container {
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+      h1 {
+        color: #dc3545;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Error</h1>
+      <p th:text="${errorMessage}">Oops! Something went wrong.</p>
+      <p>Please try again later or contact support.</p>
+    </div>
+  </body>
+</html>

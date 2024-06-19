@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Create Product</title>
+    <title>Update Product</title>
+    <!-- Bootstrap CSS -->
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
@@ -38,16 +39,17 @@
   </head>
   <body>
     <div class="container">
-      <h1>Create Product</h1>
+      <h1>Update Product</h1>
       <form
-        th:action="@{/products/create}"
+        th:action="@{/products/update}"
         th:object="${product}"
         method="post"
         enctype="multipart/form-data"
         class="needs-validation"
         novalidate
       >
-        <input type="hidden" th:value="${sellerId}" name="sellerId" />
+        <input type="hidden" th:field="*{productId}" />
+        <input type="hidden" th:field="*{sellerId}" />
 
         <div class="form-group">
           <label for="productName">Product Name:</label>
@@ -61,31 +63,17 @@
           <div class="invalid-feedback">Please enter a product name.</div>
         </div>
 
-        <!-- <div class="form-group">
-        <label for="productDescription">Product Description:</label>
-        <input type="text" id="productDescription" class="form-control" th:field="*{productDescription}" required />
-        <div class="invalid-feedback">Please enter a product description.</div>
-    </div> -->
-
         <div class="form-group">
           <label for="productDescription">Product Description:</label>
-          <textarea
+          <input
+            type="text"
             id="productDescription"
             class="form-control"
             th:field="*{productDescription}"
-            rows="5"
             required
-          >
-          Brand - DigitalStore
-          Number of stocks - 0x
-          About this item - best item...
-          Warranty - 0 minute
-          Available till - 01-01-2024
-          Additional Information - abcd
-        </textarea
-          >
+          />
           <div class="invalid-feedback">
-            Feel free Edit and add your own description!
+            Please enter a product description.
           </div>
         </div>
 
@@ -102,21 +90,49 @@
         </div>
 
         <div class="form-group">
-          <label for="productImage">Product Image:</label>
-          <input
-            type="file"
-            id="productImage"
-            class="form-control-file"
-            name="productBinaryImage"
+          <label for="productStatus">Product Status:</label>
+          <select
+            id="productStatus"
+            class="form-control"
+            th:field="*{productStatus}"
             required
-          />
-          <div class="invalid-feedback">Please upload a product image.</div>
+          >
+            <option
+              value="UNSOLD"
+              th:selected="${product.productStatus == 'UNSOLD'}"
+            >
+              Unsold
+            </option>
+            <option
+              value="SOLD"
+              th:selected="${product.productStatus == 'SOLD'}"
+            >
+              Sold
+            </option>
+          </select>
+          <div class="invalid-feedback">Please select a product status.</div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Create</button>
+        <!-- Upload New Image -->
+        <div class="form-group">
+          <label for="newProductImage">Upload New Image:</label>
+          <input
+            type="file"
+            id="newProductImage"
+            class="form-control-file"
+            name="newProductImage"
+          />
+          <small class="form-text text-muted"
+            >Select a new image if you want to update. Otherwise old will
+            automataically use</small
+          >
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
       </form>
     </div>
 
+    <!-- Bootstrap JS and dependencies (not required for styling, but for form validation if needed) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -1,5 +1,6 @@
 package com.digitalstore.model;
 
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,7 +16,8 @@ public class Product {
     private float productPrice;
     private String sellerId;
     private ProductStatus productStatus;
-    
+    private Binary productImage;
+    private transient String imageBase64;
 
     public String getProductId() {
         return productId;
@@ -65,12 +67,26 @@ public class Product {
         this.productStatus = productStatus;
     }
 
+    public Binary getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(Binary productImage) {
+        this.productImage = productImage;
+    }
+
+    public String getImageBase64() {
+        return imageBase64;
+    }
+
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
+    }
+
     @Override
     public String toString() {
         return "Product [productId=" + productId + ", productName=" + productName + ", productDescription="
                 + productDescription + ", productPrice=" + productPrice + ", sellerId=" + sellerId + ", productStatus="
-                + productStatus + "]";
+                + productStatus + ", productImage=" + productImage + "]";
     }
-
-    
 }

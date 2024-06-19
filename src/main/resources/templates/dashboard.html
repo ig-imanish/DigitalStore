@@ -57,16 +57,25 @@
       }
       .dot {
         display: inline-block;
-        width: 10px;
-        height: 10px;
+        width: 15px;
+        height: 15px;
         border-radius: 50%;
         margin-left: 5px;
       }
+
+      .dot-sold {
+        background-color: red;
+      }
+
       .dot-unsold {
         background-color: green;
       }
-      .dot-sold {
-        background-color: red;
+
+      .product-image {
+        display: block;
+        margin: 0 auto 10px auto;
+        max-width: 100px;
+        max-height: 100px;
       }
     </style>
   </head>
@@ -93,11 +102,11 @@
             <h2>Product Details</h2>
           </div>
           <div class="card-body">
-            
-              <a class="btn btn-primary btn-sm mb-3" th:href="@{'/products/create?sellerId=' + ${seller.sellerId}}"
-                >Create New Product!</a
-              >
-            
+            <a
+              class="btn btn-primary btn-sm mb-3"
+              th:href="@{'/products/create?sellerId=' + ${seller.sellerId}}"
+              >Create New Product!</a
+            >
             <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
@@ -107,6 +116,7 @@
                     <th>Description</th>
                     <th>Price</th>
                     <th>Status</th>
+                    <th>Image</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -116,21 +126,20 @@
                     <td th:text="${product.productName}"></td>
                     <td th:text="${product.productDescription}"></td>
                     <td th:text="${product.productPrice}"></td>
+                    <td th:text="${product.productStatus}"></td>
                     <td>
-                      <span
-                        th:if="${productStatus == 'UNSOLD'}"
-                        class="dot dot-unsold"
-                      >UNSOLD</span>
-                      <span
-                        th:if="${productStatus == 'SOLD'}"
-                        class="dot dot-sold"
-                      >SOLD</span>
+                      <img
+                        th:if="${product.imageBase64}"
+                        th:src="'data:image/jpeg;base64,' + ${product.imageBase64}"
+                        class="product-image"
+                        alt="Product Image"
+                      />
                     </td>
                     <td>
                       <a
-                        th:href="@{'/products/edit?id=' + ${product.productId}}"
+                        th:href="@{'/products/update?id=' + ${product.productId}}"
                         class="btn btn-info btn-sm"
-                        >Edit</a
+                        >update</a
                       >
                       <form
                         th:action="@{/products/delete}"
@@ -153,7 +162,7 @@
                     </td>
                   </tr>
                   <tr th:if="${products == null or #lists.isEmpty(products)}">
-                    <td colspan="6" class="text-center">
+                    <td colspan="7" class="text-center">
                       No products available.
                     </td>
                   </tr>

@@ -24,6 +24,12 @@ public class BAuthGetController {
     @GetMapping("/login")
     public String buyerLoginPage(Model model){
          model.addAttribute("buyer", new Buyer());
-        return "buyer/login";
+         return "buyer/login";
     }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "redirect:/logout"; 
+    }
+    
 }

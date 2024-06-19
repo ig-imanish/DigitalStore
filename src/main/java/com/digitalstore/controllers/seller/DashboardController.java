@@ -1,5 +1,6 @@
 package com.digitalstore.controllers.seller;
 
+import java.util.Base64;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,7 @@ public class DashboardController {
         if(seller == null){
             return "redirect:/";
         }
+
         if(sellerService.isSellerExist(seller.getSellerId())){
             return "redirect:/dashboard/" + seller.getSellerId();
         }
@@ -92,6 +94,12 @@ public class DashboardController {
 
         Seller seller2 = sellerService.findBySellerId(sellerId);
         List<Product> allProducts = productService.findBySellerId(sellerId);
+        for(Product product: allProducts){
+            if (product.getProductImage() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(product.getProductImage().getData());
+                product.setImageBase64(base64Image);
+            }
+        }
 
         model.addAttribute("products", allProducts);
         model.addAttribute("seller", seller2);

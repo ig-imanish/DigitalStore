@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Logout</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding: 20px;
+      }
+      .container {
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+      }
+      h1 {
+        color: #333;
+      }
+      .logout-form {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Logout</h1>
+      <p>Are you sure you want to logout?</p>
+      <form th:action="@{/logout}" method="post" class="logout-form">
+        <button type="submit" class="btn btn-primary">Logout</button>
+      </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (not required for styling, but for form submission if needed) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

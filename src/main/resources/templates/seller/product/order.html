@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Order Page</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding: 20px;
+      }
+      .container {
+        width: 80%;
+        margin: 0 auto;
+      }
+      .product-details {
+        margin-top: 20px;
+      }
+      .seller-details {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Order Details</h1>
+
+      <!-- Product Details -->
+      <div class="card product-details">
+        <h5 class="card-header">Product Details</h5>
+        <div class="card-body">
+          <h5 class="card-title" th:text="${product1.productName}">
+            Product Name
+          </h5>
+          <p class="card-text">
+            Product Description: <br />
+            <span th:text="${product1.productDescription}">Unknown</span>
+          </p>
+
+          <p class="card-text">
+            Price: <span th:text="${product1.productPrice}">$0.00</span>
+          </p>
+          <p class="card-text">
+            Status: <span th:text="${product1.productStatus}">Unknown</span>
+          </p>
+          <img
+            th:if="${product1.imageBase64}"
+            th:src="'data:image/jpeg;base64,' + ${product1.imageBase64}"
+            class="card-img-top"
+            alt="Product Image"
+          />
+        </div>
+      </div>
+
+      <!-- Seller Details -->
+      <div class="card">
+        <h5 class="card-header">Seller Details</h5>
+        <div class="card-body">
+          <h5 class="card-title" th:text="${seller.sellerName}">Seller Name</h5>
+          <p class="card-text">
+            Seller ID: <span th:text="${seller.sellerId}">XYZ</span>
+          </p>
+          <p class="card-text">
+            Seller Email:
+            <span th:text="${seller.sellerEmail}">seller@example.com</span>
+          </p>
+          <p class="card-text">
+            Number of Products:
+            <span
+              th:text="${seller.sellerProducts != null ? seller.sellerProducts.size() : 0}"
+              >0</span
+            >
+          </p>
+          <p class="card-text">
+            Number of Vouches:
+            <span
+              th:text="${seller.sellerVouches != null ? seller.sellerVouches.size() : 0}"
+              >0</span
+            >
+          </p>
+        </div>
+      </div>
+
+      <!-- Order Form (if needed) -->
+      <form th:action="@{/placeOrder}" method="post">
+        <!-- Add form fields for order details -->
+        <button type="submit" class="btn btn-primary mt-3">Place Order</button>
+      </form>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

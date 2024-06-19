@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM maven:3.8.5 AS build
+FROM maven:4.0.0 AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests

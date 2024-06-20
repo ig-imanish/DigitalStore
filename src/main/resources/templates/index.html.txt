@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Welcome to Digital Store</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/indexPageStyle.css">
+  </head>
+  <body>
+
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo">
+          <a href="#">Flipkart</a>
+        </div>
+        <div class="search-box">
+          <input
+            type="text"
+            placeholder="Search for products, brands and more"
+          />
+          <button type="button">Search</button>
+        </div>
+        <div class="nav-items">
+          <a href="#" class="nav-item">Login</a>
+          <a href="#" class="nav-item">More</a>
+          <a href="#" class="nav-item">Cart</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- User info section -->
+      <div class="user-info" th:if="${user != null}">
+        <h2>User Information</h2>
+        <div th:if="${#strings.equals(typeOfUser, 'buyer')}">
+          <p>Buyer ID: <span th:text="${user.buyerId}">Buyer ID</span></p>
+          <p>Name: <span th:text="${user.buyerName}">Buyer Name</span></p>
+          <p>Email: <span th:text="${user.buyerEmail}">Buyer Email</span></p>
+        </div>
+        <div th:if="${#strings.equals(typeOfUser, 'seller')}">
+          <p>Seller ID: <span th:text="${user.sellerId}">Seller ID</span></p>
+          <p>Name: <span th:text="${user.sellerName}">Seller Name</span></p>
+          <p>Email: <span th:text="${user.sellerEmail}">Seller Email</span></p>
+        </div>
+        <div>
+          <button th:if="${#strings.equals(typeOfUser, 'buyer')}">
+            <a
+              th:href="@{'/profile/' + ${user.buyerId}}"
+              
+              >Profile</a
+            >
+          </button>
+
+          <button th:if="${#strings.equals(typeOfUser, 'seller')}">
+            <a
+              th:href="@{'/dashboard/' + ${user.sellerId}}"
+              
+              >Dashboard</a
+            >
+          </button>
+        </div>
+      </div>
+
+      <!-- Login section if user is not logged in -->
+      <div class="login-section" th:if="${user == null}">
+        <h2>You are not logged in</h2>
+        <button>
+          <a th:href="@{/login}">Login</a>
+        </button>
+      </div>
+
+      <!-- Status and Product Cards -->
+      <h2 class="mt-4">Product List</h2>
+      <div class="row">
+        <div th:each="product, iterStat : ${products}" class="col-md-3">
+          <div class="card">
+            <div class="card-header" th:text="${product.productName}">
+              Product Name
+            </div>
+            <div class="card-body">
+              <img
+                th:if="${product.imageBase64}"
+                th:src="'data:image/jpeg;base64,' + ${product.imageBase64}"
+                class="product-image"
+                alt="Product Image"
+              />
+              <p class="card-text" th:text="${product.productDescription}">
+                Product Description
+              </p>
+              <p class="card-text">
+                Price:
+                <span class="card-price" th:text="${product.productPrice}"
+                  >$ 0</span
+                >
+              </p>
+              <span
+                th:class="${#strings.equals(product.productStatus, 'UNSOLD') ? 'text-success font-weight-bold' : 
+                 #strings.equals(product.productStatus, 'SOLD') ? 'text-danger font-weight-bold' : 
+                 'text-muted'}"
+                th:text="${#strings.equals(product.productStatus, 'UNSOLD') ? 'UNSOLD' : 
+                #strings.equals(product.productStatus, 'SOLD') ? 'SOLD' : 
+                'Unknown'}"
+                >Unknown</span
+              >
+
+              <!-- <p class="card-text">Status: <span class="card-status" th:text="${product.productStatus}">Dont know</span></p> -->
+
+              <!-- <a
+                class="card-btn btn btn-primary btn-sm"
+                th:href="@{'/products/order/' + ${product.productId}}"
+                >Order Now</a
+              > -->
+              <button>
+                <a th:href="@{'/products/order/' + ${product.productId}}"
+                  >Order Now</a
+                >
+              </button>
+            </div>
+          </div>
+          <!-- Clearfix to ensure proper layout on small screens -->
+          <div
+            th:if="${iterStat.count % 4 == 0}"
+            class="w-100 d-none d-md-block"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (not required for styling, but for interactive components if needed) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

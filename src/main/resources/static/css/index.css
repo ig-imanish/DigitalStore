@@ -1,0 +1,228 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #13192a;
+  color: white;
+  display: flex;
+}
+.sidebar {
+  width: 15%;
+  background-color: #1b2638;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  height: 100%;
+}
+.sidebar img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+.sidebar h2 {
+  margin: 10px 0;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+.sidebar ul li {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #1f2a3c;
+  text-align: center;
+  border-radius: 10px;
+}
+.sidebar ul li a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+.sidebar ul li.active {
+  background-color: #0a84ff;
+}
+.sidebar ul li:hover {
+  background-color: #0a84ff;
+  cursor: pointer;
+}
+.login-section {
+  width: 15%;
+  background-color: #1b2638;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  height: 100%;
+}
+.login-section button{
+  padding: 10px;
+  border: none;
+  margin: 10px 0;
+  background-color: #1f2a3c;
+  text-align: center;
+  border-radius: 10px;
+  list-style: none;
+  padding: 0;
+  width: 180px;
+  height: 43px;
+}
+.login-section button.active {
+  background-color: #0a84ff;
+}
+.login-section button a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+.login-section button:hover {
+  background-color: #0a84ff;
+  cursor: pointer;
+}
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 15%;
+  height: 100vh;
+  overflow-y: auto;
+}
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.header h1 {
+  margin: 0;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+
+  margin: 20px 10px 20px 40px;
+  background-color: #1f2a3c;
+  border-radius: 10px;
+  padding: 10px;
+}
+.search-bar input {
+  flex: 1;
+  border: none !important;
+  outline: none !important;
+  background: none;
+  color: white;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.search-bar button {
+  border: none;
+
+  background: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.section-title {
+  font-size: 18px;
+
+  margin-left: 35px;
+  margin-bottom: 10px;
+}
+.card {
+  background-color: #0f1828;
+  padding: 20px;
+  border: 2px solid #1f2a3c;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.card img.product-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.card .company-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.card .content {
+  flex: 1;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #0a84ff;
+}
+
+.card p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #b0b0b0;
+}
+
+.card .price {
+  margin-top: 5px;
+  font-size: 16px;
+  color: #5a5a5a;
+}
+
+.card .explore {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid black;
+  box-shadow: 0 0 0 0 black;
+}
+
+.card .explore:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #0a84ff;
+}
+
+.card .explore:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 black;
+}
+
+.card .productStatus span {
+  position: absolute;
+  top: 25px;
+  right: 50px;
+  font-size: 17px;
+}
+
+.card .productStatus .text-success {
+  color: green;
+  font-weight: bold;
+}
+
+.productStatus .text-danger {
+  color: red; 
+  font-weight: bold;
+}
+
+.productStatus .text-muted {
+  color: gray;
+}

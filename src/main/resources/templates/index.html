@@ -2,121 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Welcome to Digital Store</title>
-    <!-- Bootstrap CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mixed Layout</title>
     <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
-        padding-top: 20px;
-      }
-      .container {
-        width: 80%;
-        margin: 0 auto;
-      }
-      h1,
-      h2 {
-        text-align: center;
-        color: #333;
-      }
-      /* Uiverse.io Card Template Styles */
-      button {
-        background-color: white;
-        color: black;
-        border-radius: 10px;
-        font-size: 17px;
-        font-weight: 600;
-        padding: 8px 15px;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-        border: 1px solid black;
-        box-shadow: 0 0 0 0 black;
-      }
-      button a {
-        text-decoration: none;
-        color: black;
-      }
-
-      button:hover {
-        transform: translateY(-4px) translateX(-2px);
-        box-shadow: 2px 5px 0 0 black;
-      }
-
-      button:active {
-        transform: translateY(2px) translateX(1px);
-        box-shadow: 0 0 0 0 black;
-      }
-      .card {
-        width: 230px;
-        height: 360px;
-        background: #fff;
-        border: 2px solid #323232;
-        box-shadow: 4px 4px #323232;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        padding: 20px;
-        gap: 10px;
-        font-family: Arial, sans-serif;
-        margin-bottom: 20px;
-      }
-
-      .card-header {
-        background-color: white;
-        border: 1px solid black;
-        border-radius: 10px;
-        color: rgb(0, 0, 0);
-        padding: 10px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        text-align: center;
-        font-size: 15px;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-
-      .card-body {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-      }
-
-      .product-image {
-        width: 100px; /* Adjust size as needed */
-        height: 100px; /* Adjust size as needed */
-        border-radius: 8px; /* Optional: Adding some border-radius */
-        object-fit: cover;
-      }
-
-      .card-text {
-        font-size: 14px;
-        color: #666;
-      }
-
-      .card-price {
-        font-size: 20px;
-        font-weight: bold;
-        color: #323232;
-      }
-
-      .card-status {
-        font-size: 14px;
-        font-weight: bold;
-        color: #28a745; /* Green color for available status */
-      }
-    </style>
+    <link rel="stylesheet" href="/src/main/resources/static/css/index.css" />
+    <link rel="icon" href="background.jpg" type="image/x-icon" />
   </head>
   <body>
-    <div class="container">
-      <!-- User info section -->
+    <div class="sidebar">
+      <!-- <img src="background.jpg" alt="User Avatar" /> -->
+
       <div class="user-info" th:if="${user != null}">
         <h2>User Information</h2>
         <div th:if="${#strings.equals(typeOfUser, 'buyer')}">
@@ -129,91 +27,98 @@
           <p>Name: <span th:text="${user.sellerName}">Seller Name</span></p>
           <p>Email: <span th:text="${user.sellerEmail}">Seller Email</span></p>
         </div>
-        <div>
-          <button th:if="${#strings.equals(typeOfUser, 'buyer')}">
-            <a
-              th:href="@{'/profile/' + ${user.buyerId}}"
-              
-              >Profile</a
-            >
-          </button>
 
-          <button th:if="${#strings.equals(typeOfUser, 'seller')}">
-            <a
-              th:href="@{'/dashboard/' + ${user.sellerId}}"
-              
-              >Dashboard</a
-            >
-          </button>
-        </div>
+        <ul>
+          <li class="active">Home</li>
+          <li th:if="${#strings.equals(typeOfUser, 'buyer')}">
+            <span>
+              <a th:href="@{'/profile/' + ${user.buyerId}}">Profile</a>
+            </span>
+          </li>
+          <li th:if="${#strings.equals(typeOfUser, 'seller')}">
+            <span>
+              <a th:href="@{'/dashboard/' + ${user.sellerId}}">Dashboard</a>
+            </span>
+          </li>
+          <li>
+            <span>
+              <a th:href="@{/about/}">Contact Us</a>
+            </span>
+          </li>
+          <li>
+            <span>
+              <a th:href="@{/about/}">About Us</a>
+            </span>
+          </li>
+        </ul>
       </div>
 
-      <!-- Login section if user is not logged in -->
       <div class="login-section" th:if="${user == null}">
-        <h2>You are not logged in</h2>
-        <button>
+        <h2 text-align="center">You are not logged in</h2>
+
+        <button class="active">
           <a th:href="@{/login}">Login</a>
+        </button>
+         <button>
+          <a th:href="@{/contact}">Contact us</a>
+        </button>
+         <button>
+          <a th:href="@{/about}">About us</a>
+        </button>
+
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="header">
+        <h1>Digital Shop</h1>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search" />
+        <button>
+          <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>
 
-      <!-- Status and Product Cards -->
-      <h2 class="mt-4">Product List</h2>
-      <div class="row">
-        <div th:each="product, iterStat : ${products}" class="col-md-3">
-          <div class="card">
-            <div class="card-header" th:text="${product.productName}">
-              Product Name
-            </div>
-            <div class="card-body">
-              <img
-                th:if="${product.imageBase64}"
-                th:src="'data:image/jpeg;base64,' + ${product.imageBase64}"
-                class="product-image"
-                alt="Product Image"
-              />
-              <p class="card-text" th:text="${product.productDescription}">
-                Product Description
-              </p>
-              <p class="card-text">
-                Price:
-                <span class="card-price" th:text="${product.productPrice}"
-                  >$ 0</span
-                >
-              </p>
-              <span
-                th:class="${#strings.equals(product.productStatus, 'UNSOLD') ? 'text-success font-weight-bold' : 
-                 #strings.equals(product.productStatus, 'SOLD') ? 'text-danger font-weight-bold' : 
-                 'text-muted'}"
-                th:text="${#strings.equals(product.productStatus, 'UNSOLD') ? 'UNSOLD' : 
-                #strings.equals(product.productStatus, 'SOLD') ? 'SOLD' : 
-                'Unknown'}"
-                >Unknown</span
-              >
-
-              <!-- <p class="card-text">Status: <span class="card-status" th:text="${product.productStatus}">Dont know</span></p> -->
-
-              <!-- <a
-                class="card-btn btn btn-primary btn-sm"
-                th:href="@{'/products/order/' + ${product.productId}}"
-                >Order Now</a
-              > -->
-              <button>
-                <a th:href="@{'/products/order/' + ${product.productId}}"
-                  >Order Now</a
-                >
-              </button>
-            </div>
+      <div th:each="product, iterStat : ${products}">
+        <div class="card">
+          <img
+            th:if="${product.imageBase64}"
+            th:src="@{'data:image/jpeg;base64,' + ${product.imageBase64}}"
+            class="product-image"
+            alt="Product Image"
+          />
+          <div class="company-icon">
+           <i class="fa-solid fa-certificate fa-spin" style="color: #26b027;"></i>
           </div>
-          <!-- Clearfix to ensure proper layout on small screens -->
-          <div
-            th:if="${iterStat.count % 4 == 0}"
-            class="w-100 d-none d-md-block"
-          ></div>
+
+          <div class="content">
+            <h3 class="card-header" th:text="${product.productName}">
+              Product Name
+            </h3>
+            <p class="card-text" th:text="${product.productDescription}">
+              Product Description
+            </p>
+            <p class="price">
+              Price:
+              <span th:text="${product.productPrice}">$0</span>
+            </p>
+          </div>
+
+          <div class="productStatus">
+            <span
+              th:class="${#strings.equals(product.productStatus, 'UNSOLD') ? 'text-success' : 
+            #strings.equals(product.productStatus, 'SOLD') ? 'text-danger' : 
+            'productStatus text-muted'}"
+              th:text="${#strings.equals(product.productStatus, 'UNSOLD') ? 'UNSOLD' : 
+            #strings.equals(product.productStatus, 'SOLD') ? 'SOLD' : 
+            'Unknown'}"
+              >g</span
+            >
+          </div>
+
+          <button class="explore">Order Now</button>
         </div>
       </div>
     </div>
-
-    <!-- Bootstrap JS and dependencies (not required for styling, but for interactive components if needed) -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flipkart Navbar</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f1f3f6;
+    }
+
+    .navbar {
+      background-color: white;
+      color: black;
+      padding: 10px 0;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .logo a {
+      color: #2874f0;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .explore-plus {
+      font-size: 12px;
+      color: #ffa500;
+      margin-left: 5px;
+    }
+
+    .explore-plus .plus {
+      color: #2874f0;
+    }
+
+    .search-box {
+      display: flex;
+      flex: 1;
+      margin: 0 20px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 2px 0 0 2px;
+      background-color: #f1f3f6;
+      font-size: 14px;
+    }
+
+    .search-box button {
+      padding: 10px;
+      background-color: #2874f0;
+      border: none;
+      color: white;
+      border-radius: 0 2px 2px 0;
+      cursor: pointer;
+    }
+
+    .search-box button img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .nav-items {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-item {
+      margin-left: 20px;
+      color: black;
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-item img {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    .nav-item:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo">
+          <a href="#">Flipkart</a>
+          <span class="explore-plus"
+            >Explore <span class="plus">Plus</span>
+            <img
+              src="https://img.icons8.com/emoji/48/000000/star-emoji.png"
+              alt="star"
+          /></span>
+        </div>
+        <div class="search-box">
+          <input
+            type="text"
+            placeholder="Search for Products, Brands and More"
+          />
+          <button type="button">
+            <img
+              src="https://img.icons8.com/ios-filled/50/000000/search--v1.png"
+              alt="search"
+            />
+          </button>
+        </div>
+        <div class="nav-items">
+          <a href="#" class="nav-item"
+            ><img
+              src="https://img.icons8.com/ios-filled/50/000000/user--v1.png"
+              alt="login"
+            />
+            Login</a
+          >
+          <a href="#" class="nav-item"
+            ><img
+              src="https://img.icons8.com/ios-filled/50/000000/shopping-cart--v1.png"
+              alt="cart"
+            />
+            Cart</a
+          >
+          <a href="#" class="nav-item"
+            ><img
+              src="https://img.icons8.com/ios-filled/50/000000/shop.png"
+              alt="become a seller"
+            />
+            Become a Seller</a
+          >
+          <a href="#" class="nav-item"
+            ><img
+              src="https://img.icons8.com/ios-filled/50/000000/menu-2.png"
+              alt="more"
+          /></a>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

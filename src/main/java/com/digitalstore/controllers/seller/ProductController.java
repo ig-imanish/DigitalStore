@@ -65,7 +65,6 @@ public class ProductController {
 
         product.setSellerId(sellerId);
         product.setProductStatus(ProductStatus.UNSOLD);
-
         if (!productImage.isEmpty()) {
             try {
                 // Convert MultipartFile to byte array
@@ -149,6 +148,9 @@ public class ProductController {
         if (seller == null) {
             return "error"; 
         }
+        seller.setImageBase64(Base64.getEncoder().encodeToString(seller.getSellerAvatar().getData()));
+        product.setImageBase64(Base64.getEncoder().encodeToString(product.getProductImage().getData()));
+
         model.addAttribute("product1", product);
         model.addAttribute("seller", seller);
         return "seller/product/order";

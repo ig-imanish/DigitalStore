@@ -1,0 +1,87 @@
+ body {
+        font-family: Arial, sans-serif;
+        background-color: #13192a;
+        color: aliceblue;
+        padding: 20px;
+      }
+      .container {
+        width: 80%;
+        margin: 0 auto;
+      }
+      h1,
+      h2,
+      h3 {
+        text-align: center;
+        color: #fffefe;
+      }
+      .btn {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 17px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 3px;
+        margin: 5px 0;
+      }
+      .btn-sm {
+        font-size: 15px;
+        padding: 5px 8px;
+      }
+      .btn-danger {
+        background-color: #f8021b;
+      }
+      .btn-info {
+        background-color: #018dff;
+      }
+      .card {
+        background-color: #1b2638;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        padding: 10px;
+      }
+      .card-header {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        text-align: center;
+      }
+      .card-body {
+        color: white;
+        padding: 10px;
+      }
+      .table-responsive {
+        overflow-x: auto;
+      }
+      .table {
+        width: 100%;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+      }
+      .table th,
+      .table td {
+        border: 1px solid #ccc;
+        color: white;
+        padding: 8px;
+        vertical-align: middle;
+        text-align: center;
+      }
+      .table th {
+        background-color: #343a40;
+      }
+      .product-image {
+        display: block;
+        margin: 0 auto 10px auto;
+        max-width: 100px;
+        max-height: 100px;
+      }
+      .text-center {
+        text-align: center;
+      }

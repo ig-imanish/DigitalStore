@@ -1,6 +1,7 @@
 package com.digitalstore.controllers.seller;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 import org.bson.BsonBinarySubType;
@@ -70,6 +71,7 @@ public class SAuthPostController {
             }
             if (!sellerAvatar.isEmpty()) {
                 Binary binaryImage = new Binary(BsonBinarySubType.BINARY, sellerAvatar.getBytes());
+                seller.setImageBase64(Base64.getEncoder().encodeToString(binaryImage.getData()));
                 seller.setSellerAvatar(binaryImage);
             } else {
                 model.addAttribute("error", "Avatar file is required!");

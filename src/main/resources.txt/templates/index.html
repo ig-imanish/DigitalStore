@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DigitalStore - Home</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/static/css/index.css" />
+    <!-- <link rel="stylesheet" href="/src/main/resources/static/css/index.css" /> -->
+    <link
+      rel="icon"
+      href="/static/img/user-default-avatar.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="user-info" th:if="${user != null}">
+        <div th:if="${#strings.equals(typeOfUser, 'buyer')}">
+          <div class="text">
+            <p>Name: <span th:text="${user.buyerName}">Buyer Name</span></p>
+            <p>ID: <span style="font-size: small;" th:text="${user.buyerId}">Buyer ID</span></p>
+            <p>Email: <span th:text="${user.buyerEmail}">Buyer Email</span></p>
+          </div>
+        </div>
+        <div th:if="${#strings.equals(typeOfUser, 'seller')}">
+          <img
+            th:if="${user.imageBase64}"
+            th:src="'data:image/jpeg;base64,' + ${user.imageBase64}"
+            class="user-avatar"
+            alt="User Image"
+          />
+          <div class="text">
+            <p>Name: <span th:text="${user.sellerName}">Seller Name</span></p>
+            <p>ID: <span  style="font-size: small;" th:text="${user.sellerId}">Seller ID</span></p>
+            <p>
+              Email: <span th:text="${user.sellerEmail}">Seller Email</span>
+            </p>
+          </div>
+        </div>
+        <ul>
+          <li class="active">
+            <span>
+              <a th:href="@{/}">Home</a>
+            </span>
+          </li>
+          <li th:if="${#strings.equals(typeOfUser, 'buyer')}">
+            <span>
+              <a th:href="@{'/profile/' + ${user.buyerId}}">Profile</a>
+            </span>
+          </li>
+          <li th:if="${#strings.equals(typeOfUser, 'seller')}">
+            <span>
+              <a th:href="@{'/dashboard/' + ${user.sellerId}}">Dashboard</a>
+            </span>
+          </li>
+           <li>
+            <span>
+              <a th:href="@{/seller/edit}">edit profile</a>
+            </span>
+          </li>
+          <li>
+            <span>
+              <a th:href="@{/about}">Contact Us</a>
+            </span>
+          </li>
+          <li>
+            <span>
+              <a th:href="@{/logout}">Logout</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="login-section" th:if="${user == null}">
+        <img th:src="@{/static/img/user-default-avatar.png}" alt="User Logo" />
+        <h2 style="text-align: center;">You are not logged in</h2>
+        <button class="active">
+          <a th:href="@{/login}">Start For Free</a>
+        </button>
+        <button>
+          <a th:href="@{/contact}">Contact us</a>
+        </button>
+        <button>
+          <a th:href="@{/about}">About us</a>
+        </button>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="header">
+        <h1>Digital Shop</h1>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search" />
+        <button>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+      <div th:each="product, iterStat : ${products}">
+        <div class="card">
+          <img
+            th:if="${product.imageBase64}"
+            th:src="@{'data:image/jpeg;base64,' + ${product.imageBase64}}"
+            class="product-image"
+            alt="Product Image"
+          />
+          <div class="content">
+            <h3 class="card-header" th:text="${product.productName}">
+              Product Name
+            </h3>
+            <p class="card-text" th:text="${product.productDescription}">
+              Product Description
+            </p>
+            <p class="price">
+              Price:
+              <span th:text="${product.productPrice}">0 INR</span
+              ><span> INR</span>
+            </p>
+          </div>
+          <div class="productStatus">
+            <span
+              th:class="${#strings.equals(product.productStatus, 'UNSOLD') ? 'text-success' : 
+            #strings.equals(product.productStatus, 'SOLD') ? 'text-danger' : 
+            'productStatus text-muted'}"
+              th:text="${#strings.equals(product.productStatus, 'UNSOLD') ? 'UNSOLD' : 
+            #strings.equals(product.productStatus, 'SOLD') ? 'SOLD' : 
+            'Unknown'}"
+              >g</span
+            >
+          </div>
+          <button class="explore">
+            <a
+              th:href="@{'/products/order/' + ${product.productId}}"
+              style="text-decoration: none; color: white"
+              >Order Now</a
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

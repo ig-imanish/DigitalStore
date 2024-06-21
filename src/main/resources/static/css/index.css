@@ -18,8 +18,8 @@ body {
 }
 .sidebar img {
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   margin-bottom: 10px;
 }
 .sidebar h2 {
@@ -48,6 +48,15 @@ body {
   background-color: #0a84ff;
   cursor: pointer;
 }
+.user-avatar{
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
 .login-section {
   width: 15%;
   background-color: #1b2638;
@@ -58,6 +67,18 @@ body {
   position: fixed;
   height: 100%;
 }
+.login-section h2 {
+  justify-content: center;
+  align-items: center;
+}
+/* .login-section img {
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+} */
 .login-section button{
   padding: 10px;
   border: none;
@@ -81,6 +102,9 @@ body {
 .login-section button:hover {
   background-color: #0a84ff;
   cursor: pointer;
+}
+.user-info .text{
+  line-height: 5px;
 }
 .main-content {
   flex: 1;
@@ -184,26 +208,20 @@ body {
   position: absolute;
   top: 60px;
   right: 20px;
-  background-color: white;
-  color: black;
-  border-radius: 10px;
+  border: none;
+  color: rgb(255, 255, 255);
   font-size: 17px;
   font-weight: 600;
   padding: 8px 15px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid black;
-  box-shadow: 0 0 0 0 black;
+  background-color: #1f2a3c;
+  text-align: center;
+  border-radius: 10px;
 }
 
 .card .explore:hover {
-  transform: translateY(-4px) translateX(-2px);
-  box-shadow: 2px 5px 0 0 #0a84ff;
-}
-
-.card .explore:active {
-  transform: translateY(2px) translateX(1px);
-  box-shadow: 0 0 0 0 black;
+  background-color: #0a84ff;
+  cursor: pointer;
 }
 
 .card .productStatus span {

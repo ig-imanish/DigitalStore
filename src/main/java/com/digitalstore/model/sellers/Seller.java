@@ -2,6 +2,7 @@ package com.digitalstore.model.sellers;
 
 import java.util.List;
 
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,7 +18,18 @@ public class Seller {
     private String sellerPassword;
     private List<Product> sellerProducts;
     private List<Vouch> sellerVouches;
+    private Binary sellerAvatar;
+    private transient String imageBase64;
 
+    
+
+    public String getImageBase64() {
+        return imageBase64;
+    }
+
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
+    }
 
     public String getSellerId() {
         return sellerId;
@@ -71,7 +83,15 @@ public class Seller {
     public String toString() {
         return "Seller [sellerId=" + sellerId + ", sellerName=" + sellerName + ", sellerEmail=" + sellerEmail
                 + ", sellerPassword=" + sellerPassword + ", sellerProducts=" + sellerProducts + ", sellerVouches="
-                + sellerVouches + "]";
+                + sellerVouches + ", sellerAvatar=" + sellerAvatar + "]";
+    }
+
+    public Binary getSellerAvatar() {
+        return sellerAvatar;
+    }
+
+    public void setSellerAvatar(Binary sellerAvatar) {
+        this.sellerAvatar = sellerAvatar;
     }
 
 }

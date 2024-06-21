@@ -24,6 +24,15 @@ public class SellerService {
     public boolean isSellerExist(String sellerId){
         return sellerRepo.existsById(sellerId);
     }
+    public boolean isSellerExistByEmail(String sellerEmail){
+        List<Seller> sellers = sellerRepo.findBySellerEmail(sellerEmail);
+        for(Seller seller : sellers){
+            if(seller.getSellerEmail().equals(sellerEmail)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Seller findBySellerId(String sellerId) {
         return sellerRepo.findById(sellerId).get();
@@ -37,4 +46,5 @@ public class SellerService {
     public List<Seller> findByBuyerEmail(String sellerEmail) {
         return sellerRepo.findBySellerEmail(sellerEmail);
     }
+    
 }

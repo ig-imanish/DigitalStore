@@ -11,7 +11,8 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
+         background-color: #13192a;
+        color: aliceblue;
         padding: 20px;
       }
       .container {
@@ -31,9 +32,22 @@
     <div class="container">
       <h1>Logout</h1>
       <p>Are you sure you want to logout?</p>
-      <form th:action="@{/logout}" method="post" class="logout-form">
+       <div class="user-info" th:if="${user != null}">
+        <div th:if="${#strings.equals(typeOfUser, 'buyer')}">
+           <form th:action="@{'/logout/' + ${user.buyerId}}" method="post" class="logout-form">
+        
         <button type="submit" class="btn btn-primary">Logout</button>
       </form>
+        </div>
+        <div th:if="${#strings.equals(typeOfUser, 'seller')}">
+
+            <form th:action="@{'/logout/' + ${user.sellerId}}" method="post" class="logout-form">
+        
+        <button type="submit" class="btn btn-primary">Logout</button>
+      </form>
+          
+        </div>
+    </div>
     </div>
 
     <!-- Bootstrap JS and dependencies (not required for styling, but for form submission if needed) -->

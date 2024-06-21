@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Seller Register</title>
+    <title>Edit Seller Profile</title>
     <!-- Bootstrap CSS -->
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -43,10 +43,10 @@
   </head>
   <body>
     <div class="container">
-      <h1>Seller Register</h1>
+      <h1>Edit Seller Profile</h1>
       <form
         action="#"
-        th:action="@{/seller/register}"
+        th:action="@{/seller/update}"
         method="post"
         th:object="${seller}"
         enctype="multipart/form-data"
@@ -93,18 +93,18 @@
           <input
             type="file"
             id="avatar"
-            name="avatar"
-            class="form-control-file"
+            name="sellerAvatar"
             accept=".jpg, jpeg, .png"
+            class="form-control-file"
             required
           />
           <small class="form-text text-muted">Upload your avatar image.</small>
         </div>
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary">Update</button>
       </form>
       <p class="error-message" th:text="${error}">Error message here</p>
       <p>
-        Already have an account? <a th:href="@{/seller/login}">Login here</a>
+         <a th:href="@{/}">Back to Home</a>
       </p>
     </div>
 

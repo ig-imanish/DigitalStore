@@ -10,6 +10,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ModelAndView handleException(Exception ex) {
         ModelAndView modelAndView = new ModelAndView("error"); // error.html page name
+        System.out.println(ex);
         modelAndView.addObject("errorMessage", ex.getMessage()); // Pass exception message to the error page
         return modelAndView;
     }

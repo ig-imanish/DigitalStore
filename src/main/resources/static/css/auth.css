@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #13192a;
+  color: rgb(255, 255, 255);
+  padding: 20px;
+}
+.container {
+  width: 500px;
+  height: 500px;
+  margin: 50px auto;
+}
+a {
+  cursor: pointer;
+  text-decoration: underline;
+}
+h1 {
+  text-align: center;
+  color: #ffffff;
+}
+form {
+  background-color: #1b2638;
+  border: 1px solid #ccc;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+}
+label {
+  font-weight: bold;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group input {
+  border: none !important;
+  outline: none !important;
+  color: #000000 !important;
+  display: flex;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ffffff;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control:focus {
+  color: #ffffff;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.invalid-feedback {
+  color: red;
+  font-style: italic;
+  display: none;
+}
+.form-control.is-invalid {
+  border-color: #dc3545;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23dc3545' d='M7.354 0l.646.646L4.293 4 8 .354 7.354 0zM4 4l3.354 3.354L8 7.707 4.293 4 0 .646 0 .354 4 4z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+.form-control.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+.form-text {
+  color: #ada2a2;
+}
+.btn-primary {
+  color: white;
+  padding: 10px;
+  border: none;
+  margin: 10px 0;
+  background-color: #13192a;
+  text-align: center;
+  border-radius: 10px;
+  list-style: none;
+  padding: 0;
+  width: 100px;
+  height: 30px;
+}
+.btn-primary:hover {
+  background-color: #0a84ff;
+  cursor: pointer;
+}
+.error-message {
+  color: red;
+  font-style: italic;
+}

@@ -3,43 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>Seller Login</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
-        padding: 20px;
-      }
-      .container {
-        width: 50%;
-        margin: 0 auto;
-      }
-      h1 {
-        text-align: center;
-        color: #333;
-      }
-      form {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 20px;
-        margin-top: 20px;
-      }
-      label {
-        font-weight: bold;
-      }
-      .form-group {
-        margin-bottom: 20px;
-      }
-      .error-message {
-        color: red;
-        font-style: italic;
-      }
-    </style>
+   
+    <link rel="stylesheet" href="/static/css/auth.css">
   </head>
   <body>
     <div class="container">
@@ -59,6 +24,7 @@
             id="email"
             class="form-control"
             th:field="*{sellerEmail}"
+            placeholder="Enter Your email.."
             required
           />
           <div class="invalid-feedback">
@@ -72,6 +38,7 @@
             id="password"
             class="form-control"
             th:field="*{sellerPassword}"
+            placeholder="Enter your password.."
             required
           />
           <div class="invalid-feedback">Please enter your password.</div>
@@ -84,8 +51,5 @@
         <a th:href="@{/seller/register}">Register here</a>
       </p>
     </div>
-
-    <!-- Bootstrap JS and dependencies (not required for styling, but for form validation if needed) -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>

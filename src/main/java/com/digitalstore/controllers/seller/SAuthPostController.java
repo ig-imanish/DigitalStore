@@ -20,6 +20,7 @@ import com.digitalstore.service.SellerService;
 
 import jakarta.servlet.http.HttpSession;
 
+
 @Controller
 @RequestMapping("/seller")
 public class SAuthPostController {
@@ -59,28 +60,80 @@ public class SAuthPostController {
 
         if (isExist) {
             model.addAttribute("error", "Seller already exists with the given email!");
-            return "seller/register"; // Redirect to register page or handle appropriately
+            return "seller/register";
         }
         try {
-            // Validate and process avatar upload
-            if (sellerAvatar.getSize() > 10 * 1024 * 1024) { // 2MB limit (2 * 1024 * 1024 bytes)
+            
+            if (sellerAvatar.getSize() > 10 * 1024 * 1024) {
                 model.addAttribute("error", "File size exceeds 10MB limit.");
-                return "seller/register"; // Redirect back to registration form with error
+                return "seller/register";
             }
             if (!sellerAvatar.isEmpty()) {
                 Binary binaryImage = new Binary(BsonBinarySubType.BINARY, sellerAvatar.getBytes());
                 seller.setSellerAvatar(binaryImage);
             } else {
                 model.addAttribute("error", "Avatar file is required!");
-                return "seller/register"; // Redirect to register page or handle appropriately
+                return "seller/register";
             }
         } catch (IOException e) {
             model.addAttribute("error", "Image upload failed: " + e.getMessage());
-            return "seller/register"; // Redirect to register page or handle appropriately
+            return "seller/register";
         }
         seller.setSellerId(codeGenerator.generateSellerCode());
         sellerService.saveSeller(seller);
         return "redirect:/login";
     }
+
+    @PostMapping("/edit")
+    public String editSellerAccount(@RequestParam String sellerName, @RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmPassword, HttpSession session,  @RequestParam("avatar") MultipartFile sellerAvatar, Model model) {
+
+       Seller seller = (Seller)session.getAttribute("session-seller");
+        if(seller != null){
+            if(!seller.getSellerPassword().equals(oldPassword)) {
+                model.addAttribute("error", "your password do not matched to old");
+                return "seller/edit";
+            }
+            if(!newPassword.equals(confirmPassword)){
+                model.addAttribute("error", "your new password and confirm password is not same");
+                return "seller/edit";
+            }
+            if(oldPassword.equals(newPassword)){
+                model.addAttribute("error", "your new password can not be old password");
+                return "seller/edit";
+            }
+            if(!sellerName.isEmpty()){
+
+                seller.setSellerName(sellerName);
+            }
+            if(!newPassword.isEmpty()){
+                seller.setSellerPassword(newPassword);
+            }
+            try {
+            
+            if (sellerAvatar.getSize() > 10 * 1024 * 1024) {
+                model.addAttribute("error", "File size exceeds 10MB limit.");
+                return "seller/edit";
+            }
+            if (!sellerAvatar.isEmpty()) {
+                Binary binaryImage = new Binary(BsonBinarySubType.BINARY, sellerAvatar.getBytes());
+                seller.setSellerAvatar(binaryImage);
+            } else {
+                List<Seller> existingSeller = sellerService.findByBuyerEmail(seller.getSellerEmail());
+                if(existingSeller.getFirst().getSellerAvatar() != null){
+                    seller.setSellerAvatar(existingSeller.getFirst().getSellerAvatar());
+                } else {
+                    System.out.println("@PostMapping(\"/edit\") idk what to do check avatar here!");
+                }
+            }
+        } catch (IOException e) {
+            model.addAttribute("error", "Image upload failed: " + e.getMessage());
+            return "seller/edit";
+        }
+        System.out.println(seller);
+            sellerService.saveSeller(seller);
+        }
+        return "redirect:/dashboard";
+    }
+    
 
 }

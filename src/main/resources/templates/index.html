@@ -9,21 +9,15 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="stylesheet" href="/static/css/index.css" />
-<<<<<<< HEAD
     <!-- <link rel="stylesheet" href="/src/main/resources/static/css/index.css" /> -->
     <link
       rel="icon"
       href="/static/img/user-default-avatar.png"
       type="image/x-icon"
     />
-=======
-    <link rel="icon" href="background.jpg" type="image/x-icon" />
->>>>>>> 5dddd299669174b08144f65ba6b6c5f28556273c
   </head>
   <body>
     <div class="sidebar">
-      <!-- <img src="background.jpg" alt="User Avatar" /> -->
-
       <div class="user-info" th:if="${user != null}">
         <div th:if="${#strings.equals(typeOfUser, 'buyer')}">
           <div class="text">
@@ -47,7 +41,6 @@
             </p>
           </div>
         </div>
-
         <ul>
           <li class="active">
             <span>
@@ -64,6 +57,11 @@
               <a th:href="@{'/dashboard/' + ${user.sellerId}}">Dashboard</a>
             </span>
           </li>
+           <li>
+            <span>
+              <a th:href="@{/seller/edit}">edit profile</a>
+            </span>
+          </li>
           <li>
             <span>
               <a th:href="@{/about}">Contact Us</a>
@@ -76,12 +74,9 @@
           </li>
         </ul>
       </div>
-
       <div class="login-section" th:if="${user == null}">
-        <!-- <img src="" alt="User Logo"> -->
         <img th:src="@{/static/img/user-default-avatar.png}" alt="User Logo" />
         <h2 style="text-align: center;">You are not logged in</h2>
-
         <button class="active">
           <a th:href="@{/login}">Start For Free</a>
         </button>
@@ -103,7 +98,6 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>
-
       <div th:each="product, iterStat : ${products}">
         <div class="card">
           <img
@@ -112,10 +106,6 @@
             class="product-image"
             alt="Product Image"
           />
-          <!-- <div class="company-icon">
-           <i class="fa-solid fa-certificate fa-spin" style="color: #26b027;"></i>
-          </div> -->
-
           <div class="content">
             <h3 class="card-header" th:text="${product.productName}">
               Product Name
@@ -129,7 +119,6 @@
               ><span> INR</span>
             </p>
           </div>
-
           <div class="productStatus">
             <span
               th:class="${#strings.equals(product.productStatus, 'UNSOLD') ? 'text-success' : 
@@ -141,7 +130,6 @@
               >g</span
             >
           </div>
-
           <button class="explore">
             <a
               th:href="@{'/products/order/' + ${product.productId}}"

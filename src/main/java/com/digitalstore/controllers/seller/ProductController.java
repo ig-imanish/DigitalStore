@@ -91,12 +91,10 @@ public class ProductController {
         if (sessionSeller == null || !sessionSeller.getSellerId().equals(product.getSellerId())) {
             return "redirect:/";
         }
-
         if (product.getProductImage() != null) {
             String base64Image = Base64.getEncoder().encodeToString(product.getProductImage().getData());
             product.setImageBase64(base64Image);
         }
-
         model.addAttribute("product", product);
         return "seller/product/updateProduct";
     }
@@ -111,7 +109,6 @@ public class ProductController {
         }
 
         if (!newProductImage.isEmpty()) {
-
             try {
                 Binary binaryImage = new Binary(BsonBinarySubType.BINARY, newProductImage.getBytes());
                 product.setProductImage(binaryImage);
@@ -125,7 +122,6 @@ public class ProductController {
                 product.setProductImage(existingProduct.getProductImage());
             }
         }
-
         productService.saveProduct(product);
         return "redirect:/dashboard?sellerId=" + product.getSellerId();
     }
@@ -142,30 +138,19 @@ public class ProductController {
 
     @GetMapping("/order/{productId}")
     public String showOrderPage(@PathVariable String productId, Model model) {
-        // Retrieve product details from ProductService
         if(productId == null){
             return "redirect:/";
         }
         Product product = productService.findByProductId(productId);
         if (product == null) {
-            // Handle case where product is not found
-            return "error"; // Redirect to error page or handle accordingly
+            return "error";
         }
-
-        // Retrieve seller details from SellerService
         Seller seller = sellerService.findBySellerId(product.getSellerId());
         if (seller == null) {
-            // Handle case where seller is not found
-            return "error"; // Redirect to error page or handle accordingly
+            return "error"; 
         }
-
-        // Add product and seller objects to the model to be accessed in Thymeleaf
-        // template
-        System.out.println(product);
         model.addAttribute("product1", product);
         model.addAttribute("seller", seller);
-
-        // Return the order page template
         return "seller/product/order";
     }
 }

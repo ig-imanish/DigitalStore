@@ -8,6 +8,7 @@ import com.digitalstore.model.sellers.Seller;
 
 import jakarta.servlet.http.HttpSession;
 
+
 @Controller
 @RequestMapping("/seller")
 public class SAuthGetController {
@@ -38,4 +39,9 @@ public class SAuthGetController {
     public String logout() {
         return "redirect:/logout"; 
     }
+    @GetMapping("/edit")
+    public String editSellerAccount() {
+        return "seller/edit";
+    }
+    
 }

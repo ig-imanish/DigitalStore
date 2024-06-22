@@ -1,62 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>User Profile</title>
-    <link rel="stylesheet" href="/static/css/buyer/profile.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/static/css/buyer/profile.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1 class="mt-4">User Profile</h1>
-        <div th:if="${buyer != null}">
-            <div class="card mt-4">
-                <div class="content">
-                    <p>
-                        Buyer ID: <span th:text="${buyer.buyerId}"></span>
-                    </p>
-                    <p>
-                        Name: <span th:text="${buyer.buyerName}"></span>
-                    </p>
-                    <p>
-                        Email: <span th:text="${buyer.buyerEmail}"></span>
-                    </p>
-                </div>
-                <img src="/static/img/user-default-avatar.png" alt="Avatar" class="avatar" />
+      <h1 class="mt-4">User Profile</h1>
+      <div th:if="${buyer != null}">
+        <a class="btn btn-sm btn-home" th:href="@{/}">Home page</a>
+        <a class="btn btn-sm" th:href="@{/buyer/edit}">Edit Account</a>
+        <a class="btn btn-sm" th:href="@{/contact}">Contact Us</a>
+        <a class="btn btn-sm" th:href="@{/about}">About Us</a>
+
+        <div class="card mt-4">
+          <div class="content">
+            <p>Buyer ID: <span th:text="${buyer.buyerId}"></span></p>
+            <p>Name: <span th:text="${buyer.buyerName}"></span></p>
+            <p>Email: <span th:text="${buyer.buyerEmail}"></span></p>
+          </div>
+          <!-- <img src="/static/img/user-default-avatar.png" alt="Avatar" class="avatar" /> -->
+          <img
+            th:if="${buyer.imageBase64}"
+            th:src="'data:image/jpeg;base64,' + ${buyer.imageBase64}"
+            class="avatar"
+            alt="avatar"
+          />
+        </div>
+        <h2 class="mt-4">Vouches:</h2>
+        <div th:each="vouch : ${buyer.buyerVouches}">
+          <div class="vouch-card">
+            <div class="content">
+              <p>Vouch ID: <span th:text="${vouch.id}"></span></p>
+              <p>
+                Vouch Message: <span th:text="${vouch.vouchMessage}"></span>
+              </p>
+              <p>Seller ID: <span th:text="${vouch.sellerId}"></span></p>
+              <p>Buyer ID: <span th:text="${vouch.buyerId}"></span></p>
             </div>
-            <h2 class="mt-4">Vouches:</h2>
-            <div th:each="vouch : ${buyer.buyerVouches}">
-                <div class="vouch-card">
-                    <div class="content">
-                        <p>
-                            Vouch ID: <span th:text="${vouch.id}"></span>
-                        </p>
-                        <p>
-                            Vouch Message: <span th:text="${vouch.vouchMessage}"></span>
-                        </p>
-                        <p>
-                            Seller ID: <span th:text="${vouch.sellerId}"></span>
-                        </p>
-                        <p>
-                            Buyer ID: <span th:text="${vouch.buyerId}"></span>
-                        </p>
-                    </div>
-                    <div class="vouchStatus">
-                        <span th:class="${#strings.equals(vouch.vouchStatus, 'UNSOLD') ? 'text-success' : 
+            <div class="vouchStatus">
+              <span
+                th:class="${#strings.equals(vouch.vouchStatus, 'UNSOLD') ? 'text-success' : 
                             #strings.equals(vouch.vouchStatus, 'SOLD') ? 'text-danger' : 
                             'text-muted'}"
-                            th:text="${#strings.equals(vouch.vouchStatus, 'UNSOLD') ? 'UNSOLD' : 
+                th:text="${#strings.equals(vouch.vouchStatus, 'UNSOLD') ? 'UNSOLD' : 
                             #strings.equals(vouch.vouchStatus, 'SOLD') ? 'SOLD' : 
-                            'Unknown'}">Unknown</span>
-                    </div>
-                </div>
+                            'Unknown'}"
+                >Unknown</span
+              >
             </div>
-            <p th:if="${buyer.buyerVouches == null or buyer.buyerVouches.size() == 0}" class="card-text">
-                You have no vouches yet.
-            </p>
+          </div>
         </div>
-        <p th:unless="${buyer != null}" class="mt-4 text-danger">
-            Buyer not found.
+        <p
+          th:if="${buyer.buyerVouches == null or buyer.buyerVouches.size() == 0}"
+          class="card-text"
+        >
+          You have no vouches yet.
         </p>
+      </div>
+      <p th:unless="${buyer != null}" class="mt-4 text-danger">
+        Buyer not found.
+      </p>
     </div>
-</body>
+  </body>
 </html>

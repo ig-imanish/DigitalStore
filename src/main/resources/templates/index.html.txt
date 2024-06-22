@@ -20,9 +20,20 @@
     <div class="sidebar">
       <div class="user-info" th:if="${user != null}">
         <div th:if="${#strings.equals(typeOfUser, 'buyer')}">
+          <img
+            th:if="${user.imageBase64}"
+            th:src="'data:image/jpeg;base64,' + ${user.imageBase64}"
+            class="user-avatar"
+            alt="User Image"
+          />
           <div class="text">
             <p>Name: <span th:text="${user.buyerName}">Buyer Name</span></p>
-            <p>ID: <span style="font-size: small;" th:text="${user.buyerId}">Buyer ID</span></p>
+            <p>
+              ID:
+              <span style="font-size: small" th:text="${user.buyerId}"
+                >Buyer ID</span
+              >
+            </p>
             <p>Email: <span th:text="${user.buyerEmail}">Buyer Email</span></p>
           </div>
         </div>
@@ -35,7 +46,12 @@
           />
           <div class="text">
             <p>Name: <span th:text="${user.sellerName}">Seller Name</span></p>
-            <p>ID: <span  style="font-size: small;" th:text="${user.sellerId}">Seller ID</span></p>
+            <p>
+              ID:
+              <span style="font-size: small" th:text="${user.sellerId}"
+                >Seller ID</span
+              >
+            </p>
             <p>
               Email: <span th:text="${user.sellerEmail}">Seller Email</span>
             </p>
@@ -52,14 +68,20 @@
               <a th:href="@{'/profile/' + ${user.buyerId}}">Profile</a>
             </span>
           </li>
+          <li th:if="${#strings.equals(typeOfUser, 'buyer')}">
+            <span>
+              <a th:href="@{/buyer/edit}">Edit Profile</a>
+            </span>
+          </li>
+
           <li th:if="${#strings.equals(typeOfUser, 'seller')}">
             <span>
               <a th:href="@{'/dashboard/' + ${user.sellerId}}">Dashboard</a>
             </span>
           </li>
-           <li>
+          <li th:if="${#strings.equals(typeOfUser, 'seller')}">
             <span>
-              <a th:href="@{/seller/edit}">edit profile</a>
+              <a th:href="@{/seller/edit}">Edit Profile</a>
             </span>
           </li>
           <li>
@@ -76,7 +98,7 @@
       </div>
       <div class="login-section" th:if="${user == null}">
         <img th:src="@{/static/img/user-default-avatar.png}" alt="User Logo" />
-        <h2 style="text-align: center;">You are not logged in</h2>
+        <h2 style="text-align: center">You are not logged in</h2>
         <button class="active">
           <a th:href="@{/login}">Start For Free</a>
         </button>

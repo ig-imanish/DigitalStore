@@ -8,10 +8,10 @@
   <body>
     <div class="container">
       <h1>Seller Dashboard</h1>
-      <a class="btn btn-sm" th:href="@{/}" >Home page</a>
-      <a class="btn btn-sm" th:href="@{/seller/edit}">edit account</a>
-      <a class="btn btn-sm" th:href="@{/contact}" >contact us</a>
-      <a class="btn btn-sm" th:href="@{/about}" >about us</a>
+      <a class="btn btn-sm btn-home" th:href="@{/}" >Home page</a>
+      <a class="btn btn-sm" th:href="@{/seller/edit}">Edit Account</a>
+      <a class="btn btn-sm" th:href="@{/contact}" >Contact Us</a>
+      <a class="btn btn-sm" th:href="@{/about}" >About Us</a>
       <div th:if="${seller != null}">
         <!-- Seller Details -->
         <div class="card">

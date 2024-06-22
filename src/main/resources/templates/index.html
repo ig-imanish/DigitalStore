@@ -8,22 +8,40 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="/static/css/index.css" />
-    <!-- <link rel="stylesheet" href="/src/main/resources/static/css/index.css" /> -->
+    <!-- <link rel="stylesheet" href="/src/main/resources/static/css/test.css" /> -->
+    <link rel="stylesheet" href="/static/css/test.css" />
     <link
       rel="icon"
       href="/static/img/user-default-avatar.png"
       type="image/x-icon"
     />
+
   </head>
   <body>
     <div class="sidebar">
       <div class="user-info" th:if="${user != null}">
         <div th:if="${#strings.equals(typeOfUser, 'buyer')}">
+          <img
+            th:if="${user.imageBase64}"
+            th:src="'data:image/jpeg;base64,' + ${user.imageBase64}"
+            class="user-avatar"
+            alt="User Image"
+          />
           <div class="text">
-            <p>Name: <span th:text="${user.buyerName}">Buyer Name</span></p>
-            <p>ID: <span style="font-size: small;" th:text="${user.buyerId}">Buyer ID</span></p>
-            <p>Email: <span th:text="${user.buyerEmail}">Buyer Email</span></p>
+            <p>
+              <i class="fa-solid fa-user"></i> Name:
+              <span th:text="${user.buyerName}">Buyer Name</span>
+            </p>
+            <p>
+              <i class="fa-solid fa-id-badge"></i> ID:
+              <span style="font-size: small" th:text="${user.buyerId}"
+                >Buyer ID</span
+              >
+            </p>
+            <p>
+              <i class="fa-solid fa-envelope"></i> Email:
+              <span th:text="${user.buyerEmail}">Buyer Email</span>
+            </p>
           </div>
         </div>
         <div th:if="${#strings.equals(typeOfUser, 'seller')}">
@@ -34,57 +52,95 @@
             alt="User Image"
           />
           <div class="text">
-            <p>Name: <span th:text="${user.sellerName}">Seller Name</span></p>
-            <p>ID: <span  style="font-size: small;" th:text="${user.sellerId}">Seller ID</span></p>
             <p>
-              Email: <span th:text="${user.sellerEmail}">Seller Email</span>
+              <i class="fa-solid fa-user"></i> Name:
+              <span th:text="${user.sellerName}">Seller Name</span>
+            </p>
+            <p>
+              <i class="fa-solid fa-id-badge"></i> ID:
+              <span style="font-size: small" th:text="${user.sellerId}"
+                >Seller ID</span
+              >
+            </p>
+            <p>
+              <i class="fa-solid fa-envelope"></i> Email:
+              <span th:text="${user.sellerEmail}">Seller Email</span>
             </p>
           </div>
         </div>
         <ul>
           <li class="active">
-            <span>
-              <a th:href="@{/}">Home</a>
-            </span>
+            <span
+              ><a th:href="@{/}"><i class="fa-solid fa-home"></i> Home</a></span
+            >
           </li>
           <li th:if="${#strings.equals(typeOfUser, 'buyer')}">
-            <span>
-              <a th:href="@{'/profile/' + ${user.buyerId}}">Profile</a>
-            </span>
+            <span
+              ><a th:href="@{'/profile/' + ${user.buyerId}}"
+                ><i class="fa-solid fa-user-circle"></i> Profile</a
+              ></span
+            >
+          </li>
+          <li th:if="${#strings.equals(typeOfUser, 'buyer')}">
+            <span
+              ><a th:href="@{/buyer/edit}"
+                ><i class="fa-solid fa-user-edit"></i> Edit Profile</a
+              ></span
+            >
           </li>
           <li th:if="${#strings.equals(typeOfUser, 'seller')}">
-            <span>
-              <a th:href="@{'/dashboard/' + ${user.sellerId}}">Dashboard</a>
-            </span>
+            <span
+              ><a th:href="@{'/dashboard/' + ${user.sellerId}}"
+                ><i class="fa-solid fa-tachometer-alt"></i> Dashboard</a
+              ></span
+            >
           </li>
-           <li>
-            <span>
-              <a th:href="@{/seller/edit}">edit profile</a>
-            </span>
+          <li th:if="${#strings.equals(typeOfUser, 'seller')}">
+            <span
+              ><a th:href="@{/seller/edit}"
+                ><i class="fa-solid fa-user-edit"></i> Edit Profile</a
+              ></span
+            >
           </li>
           <li>
-            <span>
-              <a th:href="@{/about}">Contact Us</a>
-            </span>
+            <span
+              ><a th:href="@{/about}"
+                ><i class="fa-solid fa-address-book"></i> Contact Us</a
+              ></span
+            >
           </li>
           <li>
-            <span>
-              <a th:href="@{/logout}">Logout</a>
-            </span>
+            <span
+              ><a th:href="@{/logout}"
+                ><i class="fa-solid fa-sign-out-alt"></i> Logout</a
+              ></span
+            >
           </li>
         </ul>
       </div>
       <div class="login-section" th:if="${user == null}">
         <img th:src="@{/static/img/user-default-avatar.png}" alt="User Logo" />
-        <h2 style="text-align: center;">You are not logged in</h2>
+        <h2 style="text-align: center">You are not logged in</h2>
         <button class="active">
-          <a th:href="@{/login}">Start For Free</a>
+          <a th:href="@{/login}"
+            ><i class="fa-solid fa-user-plus" style="color: #ffffff"></i> Start
+            For Free</a
+          >
         </button>
         <button>
-          <a th:href="@{/contact}">Contact us</a>
+          <a th:href="@{/contact}"
+            ><i class="fa-regular fa-address-book"></i> Contact us</a
+          >
         </button>
         <button>
-          <a th:href="@{/about}">About us</a>
+          <a th:href="@{/about}"
+            ><i class="fa-regular fa-address-card"></i> About us</a
+          >
+        </button>
+        <button class="button">
+          <a th:href="@{/notifications}"
+            ><i class="fa-regular fa-bell"></i> Notifications</a
+          >
         </button>
       </div>
     </div>
@@ -114,19 +170,14 @@
               Product Description
             </p>
             <p class="price">
-              Price:
-              <span th:text="${product.productPrice}">0 INR</span
-              ><span> INR</span>
+              Price: <span th:text="${product.productPrice}">0 INR</span>
+              <span>INR</span>
             </p>
           </div>
           <div class="productStatus">
             <span
-              th:class="${#strings.equals(product.productStatus, 'UNSOLD') ? 'text-success' : 
-            #strings.equals(product.productStatus, 'SOLD') ? 'text-danger' : 
-            'productStatus text-muted'}"
-              th:text="${#strings.equals(product.productStatus, 'UNSOLD') ? 'UNSOLD' : 
-            #strings.equals(product.productStatus, 'SOLD') ? 'SOLD' : 
-            'Unknown'}"
+              th:class="${#strings.equals(product.productStatus, 'UNSOLD') ? 'text-success' : #strings.equals(product.productStatus, 'SOLD') ? 'text-danger' : 'productStatus text-muted'}"
+              th:text="${#strings.equals(product.productStatus, 'UNSOLD') ? 'UNSOLD' : #strings.equals(product.productStatus, 'SOLD') ? 'SOLD' : 'Unknown'}"
               >g</span
             >
           </div>
@@ -134,7 +185,9 @@
             <a
               th:href="@{'/products/order/' + ${product.productId}}"
               style="text-decoration: none; color: white"
-              >Order Now</a
+            >
+              <i class="fa-solid fa-cart-shopping" style="color: #018dff"></i>
+              Order Now</a
             >
           </button>
         </div>

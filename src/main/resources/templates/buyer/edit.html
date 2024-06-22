@@ -2,15 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Edit Seller Profile</title>
+    <title>Edit Buyer Profile</title>
     <link rel="stylesheet" href="/static/css/auth.css" />
+    <link
+      rel="icon"
+      href="/static/img/user-default-avatar.png"
+      type="image/x-icon"
+    />
   </head>
   <body>
-    <div class="container" style="margin-bottom: 100px; margin-top: 10px !important;">
-      <h1>Edit Seller Profile</h1>
+    <div
+      class="container"
+      style="margin-bottom: 100px; margin-top: 10px !important"
+    >
+      <h1>Edit Buyer Profile</h1>
       <form
         action="#"
-        th:action="@{/seller/edit}"
+        th:action="@{/buyer/edit}"
         method="post"
         enctype="multipart/form-data"
         class="needs-validation"
@@ -22,11 +30,10 @@
             type="text"
             id="name"
             class="form-control"
-            name="sellerName"
+            name="buyerName"
             placeholder="Enter your name..."
             required
           />
-          <div class="invalid-feedback">Please enter your name.</div>
         </div>
         <div class="form-group">
           <label for="old-password">Old Password:</label>
@@ -38,7 +45,6 @@
             placeholder="Enter your old password"
             required
           />
-          <div class="invalid-feedback">Please enter your old password.</div>
         </div>
         <div class="form-group">
           <label for="new-password">New Password:</label>
@@ -50,7 +56,6 @@
             placeholder="Enter new password.."
             required
           />
-          <div class="invalid-feedback">Please enter a new password.</div>
         </div>
         <div class="form-group">
           <label for="confirm-password">Confirm New Password:</label>
@@ -59,10 +64,9 @@
             id="confirm-password"
             class="form-control"
             name="confirmPassword"
-            placeholder="Enter your new password"
+            placeholder="Confirm new password"
             required
           />
-          <div class="invalid-feedback">Please confirm your new password.</div>
         </div>
         <div class="form-group">
           <label for="avatar">Avatar:</label>
@@ -70,7 +74,7 @@
             type="file"
             id="avatar"
             name="avatar"
-            accept=".jpg, jpeg, .png"
+            accept=".jpg, .jpeg, .png"
             class="form-control-file"
             required
           />
@@ -79,9 +83,7 @@
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
       <p class="error-message" th:text="${error}">Error message here</p>
-      <p>
-        <a th:href="@{/}">Back to Home</a>
-      </p>
+      <p><a th:href="@{/}">Back to Home</a></p>
     </div>
   </body>
 </html>

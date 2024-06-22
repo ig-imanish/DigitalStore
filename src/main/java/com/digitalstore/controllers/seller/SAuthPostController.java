@@ -111,7 +111,6 @@ public class SAuthPostController {
                 seller.setSellerPassword(newPassword);
             }
             try {
-            
             if (sellerAvatar.getSize() > 10 * 1024 * 1024) {
                 model.addAttribute("error", "File size exceeds 10MB limit.");
                 return "seller/edit";
@@ -136,6 +135,4 @@ public class SAuthPostController {
         }
         return "redirect:/dashboard";
     }
-    
-
 }

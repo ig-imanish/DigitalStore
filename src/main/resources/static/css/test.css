@@ -33,8 +33,10 @@ body {
 .sidebar ul li {
   padding: 10px;
   margin: 10px 0;
-  background-color: #1f2a3c;
+  background-color: #0f1828;
+  border: 2px solid #1f2a3c;
   text-align: center;
+  justify-content: space-between;
   border-radius: 10px;
 }
 .sidebar ul li a {
@@ -45,10 +47,27 @@ body {
   background-color: #0a84ff;
 }
 .sidebar ul li:hover {
-  background-color: #0a84ff;
+  background-color: #1f2a3c;
   cursor: pointer;
 }
-.user-avatar{
+.sidebar ul li span a i {
+  color: #018dff;
+  margin-right: 8px;
+  display: inline-block;
+}
+.sidebar ul li .active span a i {
+  color: white;
+}
+.sidebar ul li .active span a i:hover {
+  color: #018dff;
+}
+
+.sidebar button a i {
+  color: #018dff;
+  margin-right: 8px;
+  display: inline-block;
+}
+.user-avatar {
   justify-content: center;
   align-items: center;
   height: 150px;
@@ -71,19 +90,12 @@ body {
   justify-content: center;
   align-items: center;
 }
-/* .login-section img {
-  justify-content: center;
-  align-items: center;
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-} */
-.login-section button{
+
+.login-section button {
   padding: 10px;
-  border: none;
   margin: 10px 0;
-  background-color: #1f2a3c;
+  background-color: #0f1828;
+  border: 2px solid #1f2a3c;
   text-align: center;
   border-radius: 10px;
   list-style: none;
@@ -94,16 +106,19 @@ body {
 .login-section button.active {
   background-color: #0a84ff;
 }
+.login-section button.active:hover {
+  background-color: #0f1828;
+}
 .login-section button a {
   text-decoration: none;
   color: rgb(255, 255, 255);
 }
 
 .login-section button:hover {
-  background-color: #0a84ff;
+  background-color: #1f2a3c;
   cursor: pointer;
 }
-.user-info .text{
+.user-info .text {
   line-height: 5px;
 }
 .main-content {
@@ -208,19 +223,19 @@ body {
   position: absolute;
   top: 60px;
   right: 20px;
-  border: none;
   color: rgb(255, 255, 255);
   font-size: 17px;
   font-weight: 600;
   padding: 8px 15px;
   cursor: pointer;
-  background-color: #1f2a3c;
+  background-color: #0f1828;
+  border: 2px solid #1f2a3c;
   text-align: center;
   border-radius: 10px;
 }
 
 .card .explore:hover {
-  background-color: #0a84ff;
+  background-color: #1f2a3c;
   cursor: pointer;
 }
 
@@ -237,7 +252,7 @@ body {
 }
 
 .productStatus .text-danger {
-  color: red; 
+  color: red;
   font-weight: bold;
 }
 

@@ -2,6 +2,7 @@ package com.digitalstore.model.buyers;
 
 import java.util.List;
 
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,7 +16,26 @@ public class Buyer {
     private String buyerEmail;
     private String buyerPassword;
     private List<Vouch> buyerVouches;
+    private Binary buyerAvatar;
+    private transient String imageBase64;
     
+    
+    public Binary getBuyerAvatar() {
+        return buyerAvatar;
+    }
+
+    public void setBuyerAvatar(Binary buyerAvatar) {
+        this.buyerAvatar = buyerAvatar;
+    }
+
+    public String getImageBase64() {
+        return imageBase64;
+    }
+
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
+    }
+
     public String getBuyerId() {
         return buyerId;
     }
@@ -59,6 +79,7 @@ public class Buyer {
     @Override
     public String toString() {
         return "Buyer [buyerId=" + buyerId + ", buyerName=" + buyerName + ", buyerEmail=" + buyerEmail
-                + ", buyerPassword=" + buyerPassword + ", buyerVouches=" + buyerVouches + "]";
+                + ", buyerPassword=" + buyerPassword + ", buyerVouches=" + buyerVouches + ", buyerAvatar=" + buyerAvatar
+                + "]";
     }
 }

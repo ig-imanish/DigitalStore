@@ -19,7 +19,18 @@ public class ProfileController {
     private BuyerService buyerService;
 
     @GetMapping
-    public String defaultProfilePage() {
+    public String defaultProfilePage(HttpSession session) {
+        if (!session.isNew()) {
+            String typeOfUser = (String) session.getAttribute("typeOfUser");
+            if (typeOfUser.equals("buyer")) {
+                Buyer buyer = (Buyer) session.getAttribute("session-buyer");
+                if (buyer != null) {
+                    return "redirect/profile" + buyer.getBuyerId();
+                }
+                return "redirect:/";
+            }
+            return "redirect:/";
+        }
         return "redirect:/";
     }
 
@@ -28,15 +39,12 @@ public class ProfileController {
         if (buyerId == null) {
             return "redirect:/";
         }
-        if (!buyerService.isBuyerExist(buyerId)) {
-            return "redirect:/";
+        if (buyerService.isBuyerExist(buyerId)) {
+            Buyer buyer = buyerService.findByBuyerId(buyerId);
+            model.addAttribute("buyer", buyer);
+            return "profile";
         }
-        Buyer sessionBuyer = (Buyer) session.getAttribute("session-buyer");
-        if (!sessionBuyer.getBuyerId().equals(buyerId)) {
-            return "redirect:/";
-        }
-        Buyer buyer = buyerService.findByBuyerId(buyerId);
-        model.addAttribute("buyer", buyer);
+        model.addAttribute("error", "buyer not found");
         return "profile";
     }
 }

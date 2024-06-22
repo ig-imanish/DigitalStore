@@ -12,7 +12,7 @@ body {
 
 h1 {
   color: #fff;
-  margin-top: 40px;
+  margin-top: 0px;
   text-align: center;
   font-size: 2.5em;
 }
@@ -81,4 +81,30 @@ h1 {
 
 .vouch-card .text-muted {
   color: gray;
+}
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 17px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #0f1828;
+  border: 2px solid #1f2a3c;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+.btn-sm {
+  font-size: 15px;
+  padding: 5px 8px;
+}
+.btn-home {
+  background-color: #018dff;
+}
+.btn:hover{
+  background-color: #018dff;
+}
+.btn-home:hover{
+  background-color: #0f1828;
 }

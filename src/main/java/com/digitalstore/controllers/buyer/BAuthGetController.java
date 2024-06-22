@@ -31,5 +31,9 @@ public class BAuthGetController {
     public String logout() {
         return "redirect:/logout"; 
     }
+    @GetMapping("/edit")
+    public String editBuyerAccount() {
+        return "buyer/edit";
+    }
     
 }

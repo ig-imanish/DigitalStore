@@ -25,6 +25,16 @@ public class BuyerService {
     public boolean isBuyerExist(String buyerId){
         return buyerRepo.existsById(buyerId);
     }
+     public boolean isBuyerExistByEmail(String buyerEmail){
+        List<Buyer> buyers = buyerRepo.findByBuyerEmail(buyerEmail);
+        for(Buyer buyer : buyers){
+            if(buyer.getBuyerEmail().equals(buyerEmail)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Buyer> findByBuyerEmail(String buyerEmail) {
        return buyerRepo.findByBuyerEmail(buyerEmail);
     }

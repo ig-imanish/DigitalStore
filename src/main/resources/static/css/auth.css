@@ -14,9 +14,10 @@ body {
   height: 500px;
   margin: 60px auto 0 auto;
 }
-a {
+.container a {
   cursor: pointer;
   text-decoration: underline;
+  color: white;
 }
 h1 {
   text-align: center;

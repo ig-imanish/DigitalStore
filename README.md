@@ -5,8 +5,9 @@ This is an online shopping website built using Spring Boot, MongoDB. The applica
 
 ## Features
 - User authentication and authorization
-- Order processing
-- Admin panel for managing products and orders
+- Seller , crud operation on products
+- Order processing [ Soon ]
+- Admin panel for managing products and orders [ Soon ]
 
 ## Technologies Used
 - **Spring Boot**: Backend framework
